@@ -34,10 +34,10 @@ def generatesentiment(text):
 
 def website_qna():
     st.write("# Website QnA")
-    user_input = st.sidebar.text_input("Website Link:", value="https://en.wikipedia.org/wiki/Machine_learning")
-    question = st.sidebar.text_input("Question:",value="What is Machine Learning?")
+    user_input = st.text_input("Website Link:", value="https://en.wikipedia.org/wiki/Machine_learning")
+    question = st.text_input("Question:",value="What is Machine Learning?")
 
-    if st.sidebar.button("Get Answer"):
+    if st.button("Get Answer"):
         scraped_data = requests.get(user_input)
         article = scraped_data.text
 
@@ -54,13 +54,10 @@ def website_qna():
         st.write(answer)
 
 def sentiment():
-    heading = """
-        Sentiment Analysis  
-        """
-    st.header(heading)
+    st.write("# Sentiment Analysis")
     user_input = st.text_input("Enter Text")
 
-    if st.sidebar.button('Get Sentiment'):
+    if st.button('Get Sentiment'):
         answer= generatesentiment(user_input)
         st.header("Answer")
         st.write(answer)

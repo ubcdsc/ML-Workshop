@@ -14,3 +14,10 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
+### Dashbaord Preview
+
+[![qna](images/qna.png')]
+
+[![qna](images/senti.png')]
+
+
