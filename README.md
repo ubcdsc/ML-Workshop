@@ -16,8 +16,8 @@ streamlit run app.py
 
 ### Dashbaord Preview
 
-[![qna](images/qna.png')]
+[![qna](images/qna.png)]
 
-[![qna](images/senti.png')]
+[![sen](images/senti.png)]
 
 
