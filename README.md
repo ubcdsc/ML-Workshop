@@ -14,7 +14,7 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-### Dashbaord Preview
+### Dashboard Preview
 
 ![qna](images/qna.png)
 
