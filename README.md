@@ -8,13 +8,6 @@ Techstack: Transformers, Streamlit, Beautiful Soup, Requests, PyTorch and Tensor
 
 Keywords: NLP, sentiment-analysis, Question-answering, GPT-2, HuggingFace
 
-References:
-https://github.com/huggingface/transformers
-
-https://github.com/streamlit/streamlit
-
-https://github.com/bzantium/nlp-guide
-
 
 ### To understand how the pretrained models are used click down here:
 
@@ -35,3 +28,9 @@ streamlit run app.py
 ![sen](images/senti.png)
 
 
+References:
+https://github.com/huggingface/transformers
+
+https://github.com/streamlit/streamlit
+
+https://github.com/bzantium/nlp-guide
