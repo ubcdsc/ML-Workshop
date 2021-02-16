@@ -1,6 +1,20 @@
 # ML Workshop for NLP using HuggingFace
 
-This workshop consists of experimenting with 'straight out-of-the-box' functionalities of HuggingFace Transformers, without using any data, training, pre-traing or fine-tuning of any sorts. It mostly represents the wide range of tasks for which Tranformers can be used and their precision in doing so.
+In this workshop, we will be explaining the basics of Machine Learning and NLP and we will also be experimenting with 'straight out-of-the-box' functionalities of HuggingFace Transformers, without using any data, training, pre-training, or fine-tuning of any sorts. Finally, We will be explaining how ML Models can be deployed to a simple Web App using Streamlit. 
+
+Prerequisites: Basics of Python and Understanding of Juypter notebooks
+
+Techstack: Transformers, Streamlit, Beautiful Soup, Requests, PyTorch and Tensorflow
+
+Keywords: NLP, sentiment-analysis, Question-answering, GPT-2, HuggingFace
+
+References:
+https://github.com/huggingface/transformers
+
+https://github.com/streamlit/streamlit
+
+https://github.com/bzantium/nlp-guide
+
 
 ### To understand how the pretrained models are used click down here:
 
