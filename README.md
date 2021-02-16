@@ -10,6 +10,8 @@ Keywords: NLP, sentiment-analysis, Question-answering, GPT-2, HuggingFace
 
 Time: Feb 18, 2021 05:00 PM Pacific Time (US and Canada)
 
+To Join the Workshop Click here: [Zoom](https://us02web.zoom.us/j/89189905104?pwd=c3RpV1pIeG5UN1pKQ1FYbi9hTGRXQT09)
+
 
 
 ### To understand how the pretrained models are used click down here:
