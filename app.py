@@ -3,7 +3,13 @@ from transformers import pipeline
 import requests
 from bs4 import BeautifulSoup
 
+st.set_page_config(
+    page_title="ML Workshop By DSC UBC",
+    layout='wide'
+)
+
 st.sidebar.image("images/DSC University of British Columbia  Light Vertical-Logo.png", width=300, height=500)
+
 
 st.sidebar.header("""
 © ML Workshop By DSC UBC
