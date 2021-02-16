@@ -14,7 +14,7 @@ st.sidebar.markdown(
 st.sidebar.markdown(
     "_When running the app the first time, it may take some time to initialise due to the requirements needing to be "
     "downloaded._")
-tool = st.sidebar.selectbox("Tool", ["Website Q&A", "Sentiment Analysis"])
+tool = st.sidebar.selectbox("Tool", ["Website Q&A", "Sentiment Analysis", "Text Generation", "Summary Generation"])
 
 
 @st.cache(suppress_st_warning=True)
@@ -28,6 +28,20 @@ def generateAnswer(question, context):
 def generatesentiment(text):
     nlp = pipeline('sentiment-analysis')
     answer = nlp(text)
+    return answer
+
+
+@st.cache(suppress_st_warning=True)
+def generatetext(starting_text):
+    gpt2 = pipeline('text-generation')
+    answer = gpt2(starting_text, max_length=50, num_return_sequences=2)
+    return answer
+
+
+@st.cache(suppress_st_warning=True)
+def generatesummary(text):
+    summarizer = pipeline("summarization")
+    answer = (summarizer(text, max_length=100, min_length=30, do_sample=False))
     return answer
 
 
@@ -63,8 +77,34 @@ def sentiment():
         st.write(answer)
 
 
+def text():
+    st.write("# GPT-2 Text Generation")
+    user_input = st.text_input("Enter Text",value="I love Machine Learning but")
+
+    if st.button('Get Text Answer'):
+        answer = generatetext(user_input)
+        st.header("Answer")
+        st.write(answer)
+
+
+def summary():
+    st.write("# Summary Generation")
+    user_input = st.text_area("Enter Text",value="")
+
+    if st.button('Get Sentiment'):
+        answer = generatesummary(user_input)
+        st.header("Answer")
+        st.write(answer)
+
+
 if tool == "Website Q&A":
     website_qna()
 
 if tool == "Sentiment Analysis":
     sentiment()
+
+if tool == "Text Generation":
+    text()
+
+if tool == "Summary Generation":
+    summary()
