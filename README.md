@@ -28,9 +28,13 @@ streamlit run app.py
 
 ### Dashboard Preview
 
-![qna](images/qna.png)
+![mood](images/mood_analyzer.PNG)
 
-![sen](images/senti.png)
+![sum](images/summarize.PNG)
+
+![ess](images/write_essay.PNG)
+
+![wiki](images/wiki_answers.PNG)
 
 
 References:
