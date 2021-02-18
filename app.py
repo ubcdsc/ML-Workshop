@@ -75,7 +75,7 @@ def website_qna():
 
 def sentiment():
     st.write("# Sentiment Analysis")
-    user_input = st.text_input("Enter Text")
+    user_input = st.text_input("Enter Text",value="I love Machine Learning")
 
     if st.button('Get Sentiment'):
         answer = generatesentiment(user_input)
@@ -95,9 +95,25 @@ def text():
 
 def summary():
     st.write("# Summary Generation")
-    user_input = st.text_area("Enter Text",value="")
+    user_input = st.text_area("Enter Text",value="Machine learning (ML) is the study of computer algorithms that "
+                                                 "improve automatically through experience.[1] It is seen as a part "
+                                                 "of artificial intelligence. Machine learning algorithms build a "
+                                                 "model based on sample data, known as training data, in order to "
+                                                 "make predictions or decisions without being explicitly programmed "
+                                                 "to do so.[2] Machine learning algorithms are used in a wide variety "
+                                                 "of applications, such as email filtering and computer vision, "
+                                                 "where it is difficult or unfeasible to develop conventional "
+                                                 "algorithms to perform the needed tasks. A subset of machine "
+                                                 "learning is closely related to computational statistics, "
+                                                 "which focuses on making predictions using computers; but not all "
+                                                 "machine learning is statistical learning. The study of mathematical "
+                                                 "optimization delivers methods, theory and application domains to "
+                                                 "the field of machine learning. Data mining is a related field of "
+                                                 "study, focusing on exploratory data analysis through unsupervised "
+                                                 "learning.[4][5] In its application across business problems, "
+                                                 "machine learning is also referred to as predictive analytics.")
 
-    if st.button('Get Sentiment'):
+    if st.button('Get Summary'):
         answer = generatesummary(user_input)
         st.header("Answer")
         st.write(answer)
