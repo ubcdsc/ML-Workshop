@@ -2,3 +2,6 @@ streamlit
 transformers
 requests
 bs4
+google
+flask
+flask_caching

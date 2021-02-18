@@ -1,3 +1,4 @@
+import googlesearch
 import streamlit as st
 from transformers import pipeline
 import requests
@@ -20,113 +21,107 @@ st.sidebar.markdown(
 st.sidebar.markdown(
     "_When running the app the first time, it may take some time to initialise due to the requirements needing to be "
     "downloaded._")
-tool = st.sidebar.selectbox("Tool", ["Website Q&A", "Sentiment Analysis", "Text Generation", "Summary Generation"])
+tool = st.sidebar.selectbox("Tool", ["Mood Analyzer", "Help Me Write My Essay", "Help Me Summarize A Passage", "Wikipedia Answers"])
 
 
 @st.cache(suppress_st_warning=True)
-def generateAnswer(question, context):
+def generate_answer(question, context):
     nlp = pipeline("question-answering")
     answer = nlp(question=question, context=context)
     return answer
 
 
 @st.cache(suppress_st_warning=True)
-def generatesentiment(text):
+def generate_sentiment(text):
     nlp = pipeline('sentiment-analysis')
     answer = nlp(text)
     return answer
 
 
 @st.cache(suppress_st_warning=True)
-def generatetext(starting_text):
+def generate_text(starting_text):
     gpt2 = pipeline('text-generation')
     answer = gpt2(starting_text, max_length=50, num_return_sequences=2)
     return answer
 
 
 @st.cache(suppress_st_warning=True)
-def generatesummary(text):
+def generate_summary(text):
     summarizer = pipeline("summarization")
-    answer = (summarizer(text, max_length=100, min_length=30, do_sample=False))
+    answer = summarizer(text, max_length=100, min_length=30, do_sample=False)
     return answer
 
 
-def website_qna():
-    st.write("# Website QnA")
-    user_input = st.text_input("Website Link:", value="https://en.wikipedia.org/wiki/Machine_learning")
-    question = st.text_input("Question:", value="What is Machine Learning?")
+def sentiment():
+    st.write("# What sentence describes your mood?")
+    user_input = st.text_input("Enter Text")
+
+    if st.button('Get my mood'):
+        answer = generate_sentiment(user_input)
+        st.header("Answer")
+        if answer[0]["label"] == "POSITIVE":
+            st.write("You seem to be in a great mood! Go gettem king")
+        else:
+            st.write("Your mood doesn't seem so great right now.. but don't worry! Your future is bright")
+
+
+def text():
+    st.write("# Help Me Write My Essay")
+    user_input = st.text_input("Enter what you've already written")
+
+    if st.button('Finish my essay'):
+        answer = generate_text(user_input)
+        st.header("Answer")
+        st.write(answer[0]["generated_text"])
+        st.write(answer[1]["generated_text"])
+
+
+def summary():
+    st.write("# Help Me Summarize A Passage")
+    user_input = st.text_area("Enter passage")
+
+    if st.button('Get summary'):
+        answer = generate_summary(user_input)
+        st.header("Answer")
+        st.write(answer[0]["summary_text"])
+
+
+def wiki_answers():
+    st.write("# Wikipedia Answers")
+    question = st.text_input("Question:")
 
     if st.button("Get Answer"):
-        scraped_data = requests.get(user_input)
+        url = get_wiki_url(question)
+        scraped_data = requests.get(url)
         article = scraped_data.text
-
         parsed_article = BeautifulSoup(article, 'lxml')
-
         paragraphs = parsed_article.find_all('p')
-
         article_text = ""
         for p in paragraphs:
             article_text += p.text
 
-        answer = generateAnswer(question, article_text)
+        answer = generate_answer(question, article_text)
         st.header("Answer")
-        st.write(answer)
+        st.write(answer["answer"])
 
 
-def sentiment():
-    st.write("# Sentiment Analysis")
-    user_input = st.text_input("Enter Text",value="I love Machine Learning")
-
-    if st.button('Get Sentiment'):
-        answer = generatesentiment(user_input)
-        st.header("Answer")
-        st.write(answer)
+__BASE_URL__ = "en.wikipedia.org"
+def get_wiki_url(query):
+    for url in googlesearch.search("site:{} {}".format(__BASE_URL__, query), stop=10):
+        return url
 
 
-def text():
-    st.write("# GPT-2 Text Generation")
-    user_input = st.text_input("Enter Text",value="I love Machine Learning but")
-
-    if st.button('Get Text Answer'):
-        answer = generatetext(user_input)
-        st.header("Answer")
-        st.write(answer)
-
-
-def summary():
-    st.write("# Summary Generation")
-    user_input = st.text_area("Enter Text",value="Machine learning (ML) is the study of computer algorithms that "
-                                                 "improve automatically through experience.[1] It is seen as a part "
-                                                 "of artificial intelligence. Machine learning algorithms build a "
-                                                 "model based on sample data, known as training data, in order to "
-                                                 "make predictions or decisions without being explicitly programmed "
-                                                 "to do so.[2] Machine learning algorithms are used in a wide variety "
-                                                 "of applications, such as email filtering and computer vision, "
-                                                 "where it is difficult or unfeasible to develop conventional "
-                                                 "algorithms to perform the needed tasks. A subset of machine "
-                                                 "learning is closely related to computational statistics, "
-                                                 "which focuses on making predictions using computers; but not all "
-                                                 "machine learning is statistical learning. The study of mathematical "
-                                                 "optimization delivers methods, theory and application domains to "
-                                                 "the field of machine learning. Data mining is a related field of "
-                                                 "study, focusing on exploratory data analysis through unsupervised "
-                                                 "learning.[4][5] In its application across business problems, "
-                                                 "machine learning is also referred to as predictive analytics.")
-
-    if st.button('Get Summary'):
-        answer = generatesummary(user_input)
-        st.header("Answer")
-        st.write(answer)
-
-
-if tool == "Website Q&A":
-    website_qna()
-
-if tool == "Sentiment Analysis":
+if tool == "Mood Analyzer":
     sentiment()
 
-if tool == "Text Generation":
+
+if tool == "Help Me Write My Essay":
     text()
 
-if tool == "Summary Generation":
+
+if tool == "Help Me Summarize A Passage":
     summary()
+
+
+if tool == "Wikipedia Answers":
+    wiki_answers()
