@@ -16,7 +16,7 @@ To Join the Workshop Click here: [Zoom](https://us02web.zoom.us/j/89189905104?pw
 
 ### To understand how the pretrained models are used click down here:
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/gagan3012/huggingface/blob/master/WorkshopNotebook.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ubcdsc/ML-Workshop/blob/master/WorkshopNotebook.ipynb)
  
 ### To run the Dashboard
 
