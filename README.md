@@ -38,6 +38,7 @@ streamlit run app.py
 
 
 References:
+
 https://github.com/huggingface/transformers
 
 https://github.com/streamlit/streamlit
@@ -45,3 +46,7 @@ https://github.com/streamlit/streamlit
 https://github.com/bzantium/nlp-guide
 
 https://i.am.ai/roadmap/
+
+https://codelabs.developers.google.com/?cat=TensorFlow
+
+https://www.qwiklabs.com/catalog?keywords=machine+learning
